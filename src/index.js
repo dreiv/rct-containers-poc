@@ -4,15 +4,19 @@ import ReactDOM from "react-dom";
 import userData from "./users.json";
 import "./styles.css";
 
-const createListItem = onClick => ({ id, name }) => (
-  <li key={id}>
-    {name}
-    <button onClick={onClick}>Toggle Active</button>
-  </li>
-);
+const createListItem = onToggleActive => user => {
+  const { id, name, active } = user;
+  return (
+    <li key={id}>
+      {active ? "Active" : "Inactive"}
+      {name}
+      <button onClick={onToggleActive.bind(null, user)}>Toggle Active</button>
+    </li>
+  );
+};
 
-const UserList = ({ users, onClick }) => (
-  <ul className="user-list">{users.map(createListItem(onClick))}</ul>
+const UserList = ({ users, onToggleActive }) => (
+  <ul className="user-list">{users.map(createListItem(onToggleActive))}</ul>
 );
 
 class UserListContainer extends Component {
@@ -23,16 +27,21 @@ class UserListContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ users: userData });
+    this.setState({
+      users: userData.map(user => ({ ...user, active: true }))
+    });
   }
 
-  toggleActive = () => {
-    console.log("weey...");
+  handleToggleActive = user => {
+    user.active = !user.active;
+    const { users } = this.state;
+
+    this.setState({ users });
   };
 
   render() {
     const { users } = this.state;
-    return <UserList users={users} onClick={this.toggleActive} />;
+    return <UserList users={users} onToggleActive={this.handleToggleActive} />;
   }
 }
 
