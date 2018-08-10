@@ -8,8 +8,8 @@ const createListItem = onToggleActive => user => {
   const { id, name, active } = user;
   return (
     <li key={id}>
-      {active ? "Active" : "Inactive"}
-      {name}
+      <a href="#">{name}</a>
+      <span>{active ? "Active" : "Inactive"}</span>
       <button onClick={onToggleActive.bind(null, user)}>Toggle Active</button>
     </li>
   );
