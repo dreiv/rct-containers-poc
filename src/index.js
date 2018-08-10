@@ -34,9 +34,7 @@ class UserListContainer extends Component {
 
   handleToggleActive = user => {
     user.active = !user.active;
-    const { users } = this.state;
-
-    this.setState({ users });
+    this.forceUpdate();
   };
 
   render() {
