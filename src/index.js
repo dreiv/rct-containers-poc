@@ -20,10 +20,9 @@ const UserList = ({ users = [], onToggleActive }) => (
 );
 
 class UserListContainer extends Component {
-  componentDidMount() {
-    this.setState({
-      users: userData.map(user => ({ ...user, active: true }))
-    });
+  constructor(props) {
+    super(props);
+    this.state = { users: userData.map(user => ({ ...user, active: true })) };
   }
 
   handleToggleActive = user => {
