@@ -4,10 +4,15 @@ import ReactDOM from "react-dom";
 import userData from "./users.json";
 import "./styles.css";
 
-const createListItem = ({ id, name }) => <li key={id}>{name}</li>;
+const createListItem = onClick => ({ id, name }) => (
+  <li key={id}>
+    {name}
+    <button onClick={onClick}>Toggle Active</button>
+  </li>
+);
 
-const UserList = ({ users }) => (
-  <ul className="user-list">{users.map(createListItem)}</ul>
+const UserList = ({ users, onClick }) => (
+  <ul className="user-list">{users.map(createListItem(onClick))}</ul>
 );
 
 class UserListContainer extends Component {
@@ -21,9 +26,13 @@ class UserListContainer extends Component {
     this.setState({ users: userData });
   }
 
+  toggleActive = () => {
+    console.log("weey...");
+  };
+
   render() {
     const { users } = this.state;
-    return <UserList users={users} />;
+    return <UserList users={users} onClick={this.toggleActive} />;
   }
 }
 
