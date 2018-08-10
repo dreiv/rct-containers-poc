@@ -15,17 +15,11 @@ const createListItem = onToggleActive => user => {
   );
 };
 
-const UserList = ({ users, onToggleActive }) => (
+const UserList = ({ users = [], onToggleActive }) => (
   <ul className="user-list">{users.map(createListItem(onToggleActive))}</ul>
 );
 
 class UserListContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { users: [] };
-  }
-
   componentDidMount() {
     this.setState({
       users: userData.map(user => ({ ...user, active: true }))
