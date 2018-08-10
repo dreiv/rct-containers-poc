@@ -38,8 +38,9 @@ class UserListContainer extends Component {
   };
 
   render() {
-    const { users } = this.state;
-    return <UserList users={users} onToggleActive={this.handleToggleActive} />;
+    return (
+      <UserList {...this.state} onToggleActive={this.handleToggleActive} />
+    );
   }
 }
 
