@@ -1,16 +1,17 @@
 .App {
-  font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 .user-list {
-  max-width: 40rem;
-  margin: 0 auto;
+	max-width: 40rem;
+	margin: 0 auto;
+	padding: 0;
 
-  display: grid;
-  grid-template-columns: 2fr 1fr auto;
-  grid-gap: 1rem;
+	display: grid;
+	grid-template-columns: 2fr 1fr auto;
+	grid-gap: 1rem;
 }
 
 .user-list > li {
-  display: contents;
+	display: contents;
 }
