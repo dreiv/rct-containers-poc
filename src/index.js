@@ -15,9 +15,13 @@ const createListItem = onToggleActive => user => {
   );
 };
 
-const UserList = ({ users = [], onToggleActive }) => (
+const UserList = ({ users, onToggleActive }) => (
   <ul className="user-list">{users.map(createListItem(onToggleActive))}</ul>
 );
+UserList.defaultProps = {
+  users: [],
+  onToggleActive: () => {}
+};
 
 class UserListContainer extends Component {
   constructor(props) {
